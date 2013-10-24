@@ -21,7 +21,7 @@ You can purchase `UniWebView` from [this link of Unity Asset Store](https://www.
 
 `UniWebView` is very easy to be integrated to your project. It just take you 3 steps to make it working. Just follow these:
 
-1. Download and import the Unity package of `UniWebView` into your project. (If you already have an `AndroidManifest.xml`, you should uncheck the tick before this file when importing and follow [this brief merge instruction](http://)).
+1. Download and import the Unity package of `UniWebView` into your project. (If you already have an `AndroidManifest.xml`, you should uncheck the tick before this file when importing and follow [this brief merge instruction](https://github.com/onevcat/UniWebView/tree/master#merge-androidmanifestxml)).
 2. Drag and drop the `UniWebViewObject` prefab from `UniWebView/Prefab` folder to your game scene.
 3. Change the `Url` in the Inspector to a url you what to load (or you can just play without changing anything, Unity3D's homepage will be get loaded) and Play your scene, your page should show automatically after loading.
 
@@ -74,22 +74,22 @@ If you already have an AndroidManifest.xml file in your project, you should not 
 <meta-data android:name="android.app.lib_name" android:value="unity" />
 <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
 ```
-3. (2) If you did not find in in Step 2, you should add a default activity to the file. Copy code below and paste it to your AndroidManifest.xml, between the `<application>` and `</application>` tag
+ 3. (2) If you did not find in in Step 2, you should add a default activity to the file. Copy code below and paste it to your AndroidManifest.xml, between the `<application>` and `</application>` tag
 
 ```xml
 <activity android:name="com.unity3d.player.UnityPlayerNativeActivity"
-                  android:label="@string/app_name"
-                  android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen">
-            <meta-data android:name="android.app.lib_name" android:value="unity" />
-            <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+    android:label="@string/app_name"
+    android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen">
+    <meta-data android:name="android.app.lib_name" android:value="unity" />
+    <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+</activity>
 ```
 
-Now you should have done it. You can [go back to the Getting Start](http://) or just continue to play with the plugin as you like.
+Now you should have done it. You can [go back to the Getting Start](https://github.com/onevcat/UniWebView/tree/master#getting-start) or just continue to play with the plugin as you like.
 
 ## Demo Example
 
