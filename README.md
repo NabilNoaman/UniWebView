@@ -27,13 +27,13 @@ You can purchase `UniWebView` from [this link of Unity Asset Store](https://www.
 
 Yes, now webpage is living in your game. The Prefab supplies a simple way to start using `UniWebView`. You can play with it in Unity Mac Editor, iOS devices or Android. The `Insets` could control the size of webview and `Load On Start` and `Auto Show When Load Complete` do exactly what they say. When you are ready, let's see how to **interact with the webview**.
 
-## Communication bwtween webview and Unity game
+## Communication between webview and Unity game
 
 The UniWebView would become USELESS if it is can just present a webpage. By using the package, you can easily talking to the webview from your game or receiving the message it sends out. You can follow the structures below to get some detail information.
 
 ### WebView to Unity
 
-The suggested method is **using a url scheme to send message to Unity**. `UniWebView` will listen to a url starting with `uniwebview://`. When the url is loaded (regularly it is a click on the url link in your webpage by user), `UniWebView` will parse it to a `[UniWebViewMessage](http://uniwebview.onevcat.com/reference/struct_uni_web_view_message.html)` and then raise the `OnReceivedMessage` event. A `UniWebViewMessage` contains a `path` string to represent the path in the url, and a `args` dictionary to represent the parameters in the url. For example when the url 
+The suggested method is **using a url scheme to send message to Unity**. `UniWebView` will listen to a url starting with `uniwebview://`. When the url is loaded (regularly it is a click on the url link in your webpage by user), `UniWebView` will parse it to a [`UniWebViewMessage`](http://uniwebview.onevcat.com/reference/struct_uni_web_view_message.html) and then raise the `OnReceivedMessage` event. A `UniWebViewMessage` contains a `path` string to represent the path in the url, and a `args` dictionary to represent the parameters in the url. For example when the url 
 
 A click on link with `uniwebview://move?direction=up&distance=1` will be parsed as
 
@@ -49,7 +49,7 @@ in a `UniWebViewMessage`, and you can implement your logic in a listener for `On
 
 ### Unity to WebView
 
-You can run any javascript with the web page from Unity game. The javascript can be either a block of code embeded in the webpage, or a string of js code wrote in your game script. By using `[EvaluatingJavaScript](http://uniwebview.onevcat.com/reference/class_uni_web_view.html#a7cb377ca74716229fb995630db52d175)`, you can call and run javascript, so you can talk to your page to do something you want. As you may noticed, this method has a return value, you can return something you want by using it and get respond from the webpage.
+You can run any javascript with the web page from Unity game. The javascript can be either a block of code embeded in the webpage, or a string of js code wrote in your game script. By using [`EvaluatingJavaScript`](http://uniwebview.onevcat.com/reference/class_uni_web_view.html#a7cb377ca74716229fb995630db52d175), you can call and run javascript, so you can talk to your page to do something you want. As you may noticed, this method has a return value, you can return something you want by using it and get respond from the webpage.
 
 There is some limitation here in evaluating a javascript. First is in the Mac Editor, the alert in the page would not pop up (But the js code will be excuted as expected). The second, there is a limitation on Android and the webview can not return value after evaluating the js. If you do need a return value for it, you can open a url start with "uniwebview://" and listen to the message event as a work around.
 
@@ -68,13 +68,15 @@ If you already have an AndroidManifest.xml file in your project, you should not 
 
 1. Open your AndroidManifest.xml file with any text editor you like. The file should be loacated in Assets/Plugins/Android.
 2. Search for `UnityPlayerNativeActivity` in your AndroidManifest.xml. Regularly, there should be only 1 or no match in the file. It you found it in your file, follow Step 3.(1). Else if there is no match, follow Step 3.(2).
-3. (1) Add the two entries below in the activity you found in Step 2, between the `<activity>` and `</activity>` tag. If they are already there and having the same value, you can leave them there and take a beer. If the value is not proper, you should change them to the same as below.
+3. Merge or add.
+
+(1) Add the two entries below in the activity you found in Step 2, between the `<activity>` and `</activity>` tag. If they are already there and having the same value, you can leave them there and take a beer. If the value is not proper, you should change them to the same as below.
 
 ```xml
 <meta-data android:name="android.app.lib_name" android:value="unity" />
 <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
 ```
- 3. (2) If you did not find in in Step 2, you should add a default activity to the file. Copy code below and paste it to your AndroidManifest.xml, between the `<application>` and `</application>` tag
+(2) If you did not find in in Step 2, you should add a default activity to the file. Copy code below and paste it to your AndroidManifest.xml, between the `<application>` and `</application>` tag
 
 ```xml
 <activity android:name="com.unity3d.player.UnityPlayerNativeActivity"
@@ -97,4 +99,4 @@ There is a simple demo to help you get started. Open the DemoScene under UniWebV
 
 ## Script Reference & Support Forum
 
-You can find the [script reference here](http://uniwebview.onevcat.com/reference). There is also a [support forum](https://groups.google.com/forum/#!forum/uniwebview) for you to ask anything about `UniWebView`. You can also [submit an issue](https://github.com/onevcat/UniWebView/issues) if you encountered anything wrong. Once confirmed, I will fix them as soon as possible. Hope `UniWebView` can accelerate your development progress. [Get it](http://) now, enjoy it and have a good day :)
+You can find the [script reference here](http://uniwebview.onevcat.com/reference). There is also a [support forum](https://groups.google.com/forum/#!forum/uni_webview) for you to ask anything about `UniWebView`. You can also [submit an issue](https://github.com/onevcat/UniWebView/issues) if you encountered anything wrong. Once confirmed, I will fix them as soon as possible. Hope `UniWebView` can accelerate your development progress. [Get it](http://) now, enjoy it and have a good day :)
