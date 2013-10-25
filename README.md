@@ -21,7 +21,7 @@ You can purchase `UniWebView` from [this link of Unity Asset Store](https://www.
 
 `UniWebView` is very easy to be integrated to your project. It just take you 3 steps to make it working. Just follow these:
 
-1. Download and import the Unity package of `UniWebView` into your project. (If you already have an `AndroidManifest.xml`, you should uncheck the tick before this file when importing and follow [this brief merge instruction](https://github.com/onevcat/UniWebView/tree/master#merge-androidmanifestxml)).
+1. Download and import the Unity package of `UniWebView` into your project. (If you already have an `AndroidManifest.xml`, you should uncheck the tick before this file when importing and follow [this brief merge instruction](https://github.com/onevcat/UniWebView/tree/master#merge-androidmanifestxml)).After importing, restart Unity to load the Edtior plugin.
 2. Drag and drop the `UniWebViewObject` prefab from `UniWebView/Prefab` folder to your game scene.
 3. Change the `Url` in the Inspector to a url you what to load (or you can just play without changing anything, Unity3D's homepage will be get loaded) and Play your scene, your page should show automatically after loading.
 
