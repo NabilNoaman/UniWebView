@@ -15,7 +15,7 @@ Main features:
 * All source code of C# script and native plugin is included for a reference, with detailed documentation.
 * Easy debug for Unity Mac Editor. There is no need to build and run again and again in your device. You can preview and interact with the webview just in editor. (Supporting for Windows Editor is on the way)
 
-You can purchase `UniWebView` from [this link of Unity Asset Store](https://www.assetstore.unity3d.com/#/content/10116) and use it in all your projects with the purchase Unity ID.
+You can purchase `UniWebView` from [this link of Unity Asset Store](https://www.assetstore.unity3d.com/#/content/12476) and use it in all your projects with the purchase Unity ID.
 
 ## Getting Start
 
@@ -99,4 +99,4 @@ There is a simple demo to help you get started. Open the DemoScene under UniWebV
 
 ## Script Reference & Support Forum
 
-You can find the [script reference here](http://uniwebview.onevcat.com/reference). There is also a [support forum](https://groups.google.com/forum/#!forum/uni_webview) for you to ask anything about `UniWebView`. You can also [submit an issue](https://github.com/onevcat/UniWebView/issues) if you encountered anything wrong. Once confirmed, I will fix them as soon as possible. Hope `UniWebView` can accelerate your development progress. [Get it](http://) now, enjoy it and have a good day :)
+You can find the [script reference here](http://uniwebview.onevcat.com/reference). There is also a [support forum](https://groups.google.com/forum/#!forum/uni_webview) for you to ask anything about `UniWebView`. You can also [submit an issue](https://github.com/onevcat/UniWebView/issues) if you encountered anything wrong. Once confirmed, I will fix them as soon as possible. Hope `UniWebView` can accelerate your development progress. [Get it](https://www.assetstore.unity3d.com/#/content/12476) now, enjoy it and have a good day :)
