@@ -12,6 +12,7 @@ Main features:
 * Send a message from webpage to Unity, using a specified url scheme. You can control the game flow and run your script code by clicking a url in the web page. By this strategy, you can implement a dynamic workflow to change your game logic on air.
 * Excute and eval javascript defined in Unity game or webpage. 
 * The size and apperence of webview is customizable.
+* Play youtube video and other media.
 * All source code of C# script and native plugin is included for a reference, with detailed documentation.
 * Easy debug for Unity Mac Editor. There is no need to build and run again and again in your device. You can preview and interact with the webview just in editor. (Supporting for Windows Editor is on the way)
 
@@ -21,7 +22,7 @@ You can purchase `UniWebView` from [this link of Unity Asset Store](https://www.
 
 `UniWebView` is very easy to be integrated to your project. It just take you 3 steps to make it working. Just follow these:
 
-1. Download and import the Unity package of `UniWebView` into your project. (If you already have an `AndroidManifest.xml`, you should uncheck the tick before this file when importing and follow [this brief merge instruction](https://github.com/onevcat/UniWebView/tree/master#merge-androidmanifestxml)).After importing, restart Unity to load the Edtior plugin.
+1. Download and import the Unity package of `UniWebView` into your project. (If you already have an `AndroidManifest.xml`, you should uncheck the tick before this file when importing and follow [this brief merge instruction](https://github.com/onevcat/UniWebView/tree/master#merge-androidmanifestxml). I will try to keep the back compatibility as possile as I can, but sometimes there is no other ways to fix some bugs without modification of this file. **If you are updating this plugin from an eariler version, you should check the [change log](http://uniwebview.onevcat.com/ChangeLog.txt) to decide if you need reimport or merge the menifest file again.**). After importing, restart Unity to load the Edtior plugin.
 2. Drag and drop the `UniWebViewObject` prefab from `UniWebView/Prefab` folder to your game scene.
 3. Change the `Url` in the Inspector to a url you what to load (or you can just play without changing anything, Unity3D's homepage will be get loaded) and Play your scene, your page should show automatically after loading.
 
@@ -60,6 +61,8 @@ Besides of the basic web page and comunication, there are some other feature Uni
 * Background transparent - In iOS, there is a gray background by default in webview. You can use `SetTransparentBackground` to set the back ground transparent.
 * Clean cache - The web view will keep the url request by default, which may cause an old page showed even if you update your web page. Use `CleanCache` to solve this problem.
 * Go back and go forward - Just behaves as a browser, you can control the webpage navigation in your game, by `GoBack` and `GoForward` method.
+* Play youtube video with the webview - Just load the url and it can play.
+* Close by back button or native tool bar - There is a built-in toolbar to control the navigation and dismiss on iOS. Also use back button to go back and close webview on Android.
 * Multiple webviews. If you want more than one webview in your game, just instantiate another gameObject and add the script to it.
 
 ### Merge AndroidManifest.xml
@@ -67,36 +70,81 @@ Besides of the basic web page and comunication, there are some other feature Uni
 If you already have an AndroidManifest.xml file in your project, you should not import the UniWebView's and add or update something to your old AndroidManifest.xml yourself. Don't worry about it, it's fairly simple. After you importing the package to your project without AndroidManifest.xml, you could follow these steps to make it work:
 
 1. Open your AndroidManifest.xml file with any text editor you like. The file should be loacated in Assets/Plugins/Android.
-2. Search for `UnityPlayerNativeActivity` in your AndroidManifest.xml. Regularly, there should be only 1 or no match in the file. It you found it in your file, follow Step 3.(1). Else if there is no match, follow Step 3.(2).
-3. Merge or add.
+2. Search for `android.intent.action.MAIN` in your AndroidManifest.xml. Regularly, there should be one and only one in the file.
+3. Merge and add as following.
 
-(1) Add the two entries below in the activity you found in Step 2, between the `<activity>` and `</activity>` tag. If they are already there and having the same value, you can leave them there and take a beer. If the value is not proper, you should change them to the same as below.
+(1) The result of Step 2 should be located in a pair of `<activity>` and `</activity>`. Insert the two entries below above the `</activity>` tag. If they are already there and having the same value, you can leave them there and go to (2). If the value is not proper, you should change them to the same as below.
 
 ```xml
 <meta-data android:name="android.app.lib_name" android:value="unity" />
 <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
 ```
-(2) If you did not find in in Step 2, you should add a default activity to the file. Copy code below and paste it to your AndroidManifest.xml, between the `<application>` and `</application>` tag
+
+(2) In the <activity...> tag, add `android:hardwareAccelerated="true"` into it. This will enable the html5 feature for Android.
+
+After these two steps, the activity would be something like this:
 
 ```xml
 <activity android:name="com.unity3d.player.UnityPlayerNativeActivity"
     android:label="@string/app_name"
+    android:hardwareAccelerated="true"
     android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen">
-    <meta-data android:name="android.app.lib_name" android:value="unity" />
-    <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
     <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
     </intent-filter>
+    <meta-data android:name="android.app.lib_name" android:value="unity" />
+    <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
 </activity>
+```
+
+(3) Then you need add an new activity for possible added custom view for webview. Add the following lines below the `</activity>` tag in (1)
+
+```xml
+<activity android:name="com.onevcat.uniwebview.UniWebViewCustomViewActivity"
+    android:label="@string/app_name"
+    android:hardwareAccelerated="true"
+    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+    android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen">
+    <meta-data android:name="android.app.lib_name" android:value="unity" />
+    <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
+</activity>
+```
+
+(4) Add the permision for accessing to Internet, if there is not one yet. Add the next line just before the end of manifest, the line above the `</manifest>` tag.
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
 ```
 
 Now you should have done it. You can [go back to the Getting Start](https://github.com/onevcat/UniWebView/tree/master#getting-start) or just continue to play with the plugin as you like.
 
 ## Demo Example
 
-There is a simple demo to help you get started. Open the DemoScene under UniWebView/Demo folder to play with it. In that demo, you can get a basic idea how UniWebView works between native webview and your Unity game. You can follow the UniWebDemo.cs to setup your webview by code. And of course don't forget we have a UniWebViewObject in UniWebView/Prefab folder for you to quickly start without any other effort.
+There is a step-by-step demo to help you get started with UniWebView. You can open the DemoScene under UniWebView/Demo folder to play with it. In that demo, you can get a basic idea how UniWebView works between native webview and your Unity game. You can follow the UniWebDemo.cs to setup your webview by code. And of course don't forget we have a `UniWebViewObject` prefab in UniWebView/Prefab folder for you to quickly start without any other effort.
+
+## FAQ
+
+You can find the frequently asked questions here. If you want to know something not mentioned here, please send me a mail or post a new thread in forum.
+
+#### Does the package contains all source code or a dll? Can I modify it?
+
+All source code of the Unity side C# and native .m/.java files are included in the package. You can modify these code to fit your project better, but you should observe the [EULA of Unity Asset Store](http://unity3d.com/company/legal/as_terms) you agreed when you register your Unity Asset Store account. You have no rights to reproduce, duplicate, copy, sell, trade or resell this package.
+
+#### Can I use it to play some youtube video?
+
+Yes. UniWebView support playing youtube on web page. More than that, UniWebView is compatible with html 5 and javascript. Other videoes embedded by html 5 or webpages containing html 5 elements will work correctly in UniWebView. There is bug cause it does not work in version 1.0.1, if there are problems, please update the plugin.
+
+#### Can I use the webview as a texture in the game?
+
+No, UniWebView is not designed to use as a texture. It is a view added above Unity's view, without interrupt Unity game. You can set the size of webview so you can decide if the Unity game scene could be seen or not.
+
+#### I can not input text in some Android device, what happened?
+
+It is caused by the feature of Unity native activity. I fixed it and submited an update. Please wait for version 1.1.1, which should be released shortly. If you want to get it earlier than from Unity Asset Store, please send me a mail with your purchase invoice number and I will send the new package back.
 
 ## Script Reference & Support Forum
 
 You can find the [script reference here](http://uniwebview.onevcat.com/reference). There is also a [support forum](https://groups.google.com/forum/#!forum/uni_webview) for you to ask anything about `UniWebView`. You can also [submit an issue](https://github.com/onevcat/UniWebView/issues) if you encountered anything wrong. Once confirmed, I will fix them as soon as possible. Hope `UniWebView` can accelerate your development progress. [Get it](https://www.assetstore.unity3d.com/#/content/12476) now, enjoy it and have a good day :)
+
+* This manual is for version 1.1.0. You can see all [change log here](http://uniwebview.onevcat.com/ChangeLog.txt).
