@@ -79,13 +79,14 @@ If you already have an AndroidManifest.xml file in your project, you should not 
 <meta-data android:name="android.app.lib_name" android:value="unity" />
 <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
 ```
+(2) (This is an optional step, if there is some text input field and you want do some keyboard input in the web page, you have to do this step. Otherwise, you can skip it) In the <activity...> tag, change the value of `android:name` to `"com.onevcat.uniwebview.AndroidPlugin"`. This will use a subclass of Unity's activity to start the game, by doing so we can avoid some issues for web view in Android. If you are using a main activity other than `com.unity3d.player.UnityPlayerNativeActivity`, `com.unity3d.player.UnityPlayerActivity` or `com.unity3d.player.UnityPlayerProxyActivity`, you have to modify the source code shipped with UniWebView to your own customization, which is far beyond the start manual. You can refer to [this post](https://docs.mobage.com/display/WWNATIVE/Customizing+the+Default+Unity+Activity+Android) to know more about activity customization.
 
-(2) In the <activity...> tag, add `android:hardwareAccelerated="true"` into it. This will enable the html5 feature for Android.
+(3) In the <activity...> tag, add `android:hardwareAccelerated="true"` into it. This will enable the html5 feature for Android.
 
-After these two steps, the activity would be something like this:
+After these three steps, the activity would be something like this:
 
 ```xml
-<activity android:name="com.unity3d.player.UnityPlayerNativeActivity"
+<activity android:name="com.onevcat.uniwebview.AndroidPlugin"
     android:label="@string/app_name"
     android:hardwareAccelerated="true"
     android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen">
@@ -98,7 +99,7 @@ After these two steps, the activity would be something like this:
 </activity>
 ```
 
-(3) Then you need add an new activity for possible added custom view for webview. Add the following lines below the `</activity>` tag in (1)
+(4) Then you need add an new activity for possible added custom view for webview. Add the following lines below the `</activity>` tag in (1)
 
 ```xml
 <activity android:name="com.onevcat.uniwebview.UniWebViewCustomViewActivity"
@@ -111,7 +112,7 @@ After these two steps, the activity would be something like this:
 </activity>
 ```
 
-(4) Add the permision for accessing to Internet, if there is not one yet. Add the next line just before the end of manifest, the line above the `</manifest>` tag.
+(5) Add the permision for accessing to Internet, if there is not one yet. Add the next line just before the end of manifest, the line above the `</manifest>` tag.
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -141,10 +142,10 @@ No, UniWebView is not designed to use as a texture. It is a view added above Uni
 
 #### I can not input text in some Android device, what happened?
 
-It is caused by the feature of Unity native activity. I fixed it and submited an update. Please wait for version 1.1.1, which should be released shortly. If you want to get it earlier than from Unity Asset Store, please send me a mail with your purchase invoice number and I will send the new package back.
+Please check if you set AndroidManifest.xml correctly. UniWebView need to start from a activity subclassed from UnityPlayerActivity and run as the main activity to slove a Unity issue which cause to input response. Follow the `Merge AndroidManifest.xml` section to config it properly. If you can not get it works, feel free to contact me.
 
 ## Script Reference & Support Forum
 
 You can find the [script reference here](http://uniwebview.onevcat.com/reference). There is also a [support forum](https://groups.google.com/forum/#!forum/uni_webview) for you to ask anything about `UniWebView`. You can also [submit an issue](https://github.com/onevcat/UniWebView/issues) if you encountered anything wrong. Once confirmed, I will fix them as soon as possible. Hope `UniWebView` can accelerate your development progress. [Get it](https://www.assetstore.unity3d.com/#/content/12476) now, enjoy it and have a good day :)
 
-* This manual is for version 1.1.0. You can see all [change log here](http://uniwebview.onevcat.com/ChangeLog.txt).
+* This manual is for version 1.1.2. You can see all [change log here](http://uniwebview.onevcat.com/ChangeLog.txt).
