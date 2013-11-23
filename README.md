@@ -15,8 +15,9 @@ Main features:
 * Play youtube video and other media.
 * All source code of C# script and native plugin is included for a reference, with detailed documentation.
 * Easy debug for Unity Mac Editor. There is no need to build and run again and again in your device. You can preview and interact with the webview just in editor. (Supporting for Windows Editor is on the way)
+* UniWebView supports Unity 4.1.4 and above.
 
-You can purchase `UniWebView` from [this link of Unity Asset Store](https://www.assetstore.unity3d.com/#/content/12476) and use it in all your projects with the purchase Unity ID.
+You can purchase `UniWebView` from either [our digital store](http://www.digitalgoodsstore.com/c/PrSAK2) or [Unity Asset Store](https://www.assetstore.unity3d.com/#/content/12476) and use it in all your projects with the purchase Unity ID. You can get full support from either store, but the update version will be a liittle faster in [our digital store](http://www.digitalgoodsstore.com/c/PrSAK2), because there is a review progress in Asset Store.
 
 ## Getting Start
 
@@ -143,6 +144,18 @@ No, UniWebView is not designed to use as a texture. It is a view added above Uni
 #### I can not input text in some Android device, what happened?
 
 Please check if you set AndroidManifest.xml correctly. UniWebView need to start from a activity subclassed from UnityPlayerActivity and run as the main activity to slove a Unity issue which cause to input response. Follow the `Merge AndroidManifest.xml` section to config it properly. If you can not get it works, feel free to contact me.
+
+#### Can I load local html files by using UniWebView?
+
+Yes, UniWebView can load local html file. Put your files in the StreamingAssets folder (`Assets/StreamingAssets`), and use set the url property of UniWebView as below:
+
+* For Mac Editor and iOS: `_webView.url = Application.streamingAssetsPath + "/yourWebPage.html";`
+* For Android: `_webView.url = "file:///android_asset/yourWebPage.html";`
+
+#### Can I load some html string by using UniWebView?
+
+Yes, you can load a html string by calling `LoadHTMLString` on the webview object. When you are using this method to load a webview, the url property will not take effect. You can also set a base url for the resources and search path for the webview. Please see the [script reference](http://uniwebview.onevcat.com/reference) and demo code for more.
+
 
 ## Script Reference & Support Forum
 
