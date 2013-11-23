@@ -161,4 +161,4 @@ Yes, you can load a html string by calling `LoadHTMLString` on the webview objec
 
 You can find the [script reference here](http://uniwebview.onevcat.com/reference). There is also a [support forum](https://groups.google.com/forum/#!forum/uni_webview) for you to ask anything about `UniWebView`. You can also [submit an issue](https://github.com/onevcat/UniWebView/issues) if you encountered anything wrong. Once confirmed, I will fix them as soon as possible. Hope `UniWebView` can accelerate your development progress. [Get it](https://www.assetstore.unity3d.com/#/content/12476) now, enjoy it and have a good day :)
 
-* This manual is for version 1.1.2. You can see all [change log here](http://uniwebview.onevcat.com/ChangeLog.txt).
+* This manual is for version 1.1.3. You can see all [change log here](http://uniwebview.onevcat.com/ChangeLog.txt).
