@@ -17,7 +17,7 @@ Main features:
 * Easy debug for Unity Mac Editor. There is no need to build and run again and again in your device. You can preview and interact with the webview just in editor. (Supporting for Windows Editor is on the way)
 * UniWebView supports Unity 4.1.4 and above.
 
-You can purchase `UniWebView` from either [our digital store](http://www.digitalgoodsstore.com/c/PrSAK2) or [Unity Asset Store](https://www.assetstore.unity3d.com/#/content/12476) and use it in all your projects with the purchase Unity ID. You can get full support from either store, but the update version will be a liittle faster in [our digital store](http://www.digitalgoodsstore.com/c/PrSAK2), because there is a review progress in Asset Store.
+You can purchase `UniWebView` from either [our digital store](https://gum.co/uniwebview) or [Unity Asset Store](https://www.assetstore.unity3d.com/#/content/12476) and use it in all your projects with the purchase Unity ID. You can get full support from either store, but the update version will be a liittle faster in [our digital store](https://gum.co/uniwebview), because there is a review progress in Asset Store.
 
 ## Getting Start
 
@@ -143,7 +143,7 @@ No, UniWebView is not designed to use as a texture. It is a view added above Uni
 
 #### I can not input text in some Android device, what happened?
 
-Please check if you set AndroidManifest.xml correctly. UniWebView need to start from a activity subclassed from UnityPlayerActivity and run as the main activity to slove a Unity issue which cause to input response. Follow the `Merge AndroidManifest.xml` section to config it properly. If you can not get it works, feel free to contact me.
+Unity 4.3 changed quite a lot in the Android Player, it broke the key press handle logic and I am working on it now. An update will be released as soon as this issue solved. If you are using versions before Unity 4.3, there should be no problem to input on Android. Please check if you set AndroidManifest.xml correctly. UniWebView need to start from a activity subclassed from UnityPlayerActivity and run as the main activity to slove a Unity issue which cause to input response. Follow the `Merge AndroidManifest.xml` section to config it properly. If you can not get it works, feel free to contact me.
 
 #### Can I load local html files by using UniWebView?
 
