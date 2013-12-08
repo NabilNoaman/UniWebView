@@ -1,3 +1,6 @@
+UniRate Version 1.2.0
+For a beautiful version, please visit http://uniwebview.onevcat.com
+
 ## UniWebView - An easier solution for integrating WebView to your mobile games
 
 ![UniWebView](http://uniwebview.onevcat.com/uniwebview-banner.png)
@@ -18,7 +21,8 @@ Main features:
 * UniWebView supports Unity 4.1.4 and above.
 
 You can purchase `UniWebView` from either [our digital store](https://gum.co/uniwebview) or [Unity Asset Store](https://www.assetstore.unity3d.com/#/content/12476) and use it in all your projects with the purchase Unity ID. You can get full support from either store, but the update version will be a liittle faster in [our digital store](https://gum.co/uniwebview), because there is a review progress in Asset Store.
-
+ 
+ 
 ## Getting Start
 
 `UniWebView` is very easy to be integrated to your project. It just take you 3 steps to make it working. Just follow these:
@@ -42,8 +46,8 @@ A click on link with `uniwebview://move?direction=up&distance=1` will be parsed 
 ```
 path = "move"
 args = {
-	direction = "up",
-	distance = "1"
+    direction = "up",
+    distance = "1"
 }
 ```
 
@@ -143,7 +147,11 @@ No, UniWebView is not designed to use as a texture. It is a view added above Uni
 
 #### I can not input text in some Android device, what happened?
 
-Unity 4.3 changed quite a lot in the Android Player, it broke the key press handle logic and I am working on it now. An update will be released as soon as this issue solved. If you are using versions before Unity 4.3, there should be no problem to input on Android. Please check if you set AndroidManifest.xml correctly. UniWebView need to start from a activity subclassed from UnityPlayerActivity and run as the main activity to slove a Unity issue which cause to input response. Follow the `Merge AndroidManifest.xml` section to config it properly. If you can not get it works, feel free to contact me.
+Please check if you set AndroidManifest.xml correctly. UniWebView need to start from a activity subclassed from UnityPlayerActivity and run as the main activity to solve a Unity issue which cause to input response. Follow the `Merge AndroidManifest.xml` section to config it properly. If you can not get it works, feel free to contact me.
+
+#### I am already using another plugin as the main activity in AndroidManifest.xml, what can I do?
+
+You have to modify either of that plugin or UniWebView to make they live together happily. Fortunately, UniWebView is shipped with source code contained, so you can modify it for your own use as you like. Please refer to [this tutorial](http://uniwebview.onevcat.com/recompile.html) about how to do it, and if you encountered any problems during it, please feel free to let me know.
 
 #### Can I load local html files by using UniWebView?
 
@@ -161,4 +169,4 @@ Yes, you can load a html string by calling `LoadHTMLString` on the webview objec
 
 You can find the [script reference here](http://uniwebview.onevcat.com/reference). There is also a [support forum](https://groups.google.com/forum/#!forum/uni_webview) for you to ask anything about `UniWebView`. You can also [submit an issue](https://github.com/onevcat/UniWebView/issues) if you encountered anything wrong. Once confirmed, I will fix them as soon as possible. Hope `UniWebView` can accelerate your development progress. [Get it](https://www.assetstore.unity3d.com/#/content/12476) now, enjoy it and have a good day :)
 
-* This manual is for version 1.1.3. You can see all [change log here](http://uniwebview.onevcat.com/ChangeLog.txt).
+* This manual is for version 1.2.0. You can see all [change log here](http://uniwebview.onevcat.com/ChangeLog.txt).
