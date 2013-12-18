@@ -156,9 +156,11 @@ You have to modify either of that plugin or UniWebView to make they live togethe
 #### Can I load local html files by using UniWebView?
 
 Yes, UniWebView can load local html file. Put your files in the StreamingAssets folder (`Assets/StreamingAssets`), and use set the url property of UniWebView as below:
-
+ 
 * For Mac Editor and iOS: `_webView.url = Application.streamingAssetsPath + "/yourWebPage.html";`
 * For Android: `_webView.url = "file:///android_asset/yourWebPage.html";`
+
+If you are using "Split Application Binary" for Android build (obb files), you should not put your local html files under `StreamingAssets` folder. Instead, you can put them to `Assets/Plugins/Android/asset/` and then you can use the same url (like "file:///android_asset/yourWebPage.html") to load it.
 
 #### Can I load some html string by using UniWebView?
 
@@ -169,4 +171,4 @@ Yes, you can load a html string by calling `LoadHTMLString` on the webview objec
 
 You can find the [script reference here](http://uniwebview.onevcat.com/reference). There is also a [support forum](https://groups.google.com/forum/#!forum/uni_webview) for you to ask anything about `UniWebView`. You can also [submit an issue](https://github.com/onevcat/UniWebView/issues) if you encountered anything wrong. Once confirmed, I will fix them as soon as possible. Hope `UniWebView` can accelerate your development progress. [Get it](https://www.assetstore.unity3d.com/#/content/12476) now, enjoy it and have a good day :)
 
-* This manual is for version 1.2.0. You can see all [change log here](http://uniwebview.onevcat.com/ChangeLog.txt).
+* This manual is for version 1.2.2. You can see all [change log here](http://uniwebview.onevcat.com/ChangeLog.txt).
