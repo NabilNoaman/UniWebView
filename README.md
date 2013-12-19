@@ -1,4 +1,4 @@
-UniRate Version 1.2.0
+UniRate Version 1.2.2
 For a beautiful version, please visit http://uniwebview.onevcat.com
 
 ## UniWebView - An easier solution for integrating WebView to your mobile games
